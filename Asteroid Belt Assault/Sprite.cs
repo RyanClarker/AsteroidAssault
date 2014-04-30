@@ -77,6 +77,15 @@ namespace Asteroid_Belt_Assault
             }
         }
 
+        public void SetNewFrame(Rectangle fr)
+        {
+            frames.Clear();
+            frames.Add(fr);
+
+            frameWidth = fr.Width;
+            frameHeight = fr.Height;
+        }
+
         public float FrameTime
         {
             get { return frameTime; }

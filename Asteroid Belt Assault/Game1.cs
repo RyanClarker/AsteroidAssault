@@ -23,8 +23,10 @@ namespace Asteroid_Belt_Assault
         GameStates gameState = GameStates.TitleScreen;
         Texture2D titleScreen;
         Texture2D spriteSheet;
+        Texture2D spaceSheet;
 
-        StarField starField;
+        Random rand = new Random();
+        StarField starField, starField2, starField3;
         Planets planet;
         AsteroidManager asteroidManager;
         PlayerManager playerManager;
@@ -76,24 +78,40 @@ namespace Asteroid_Belt_Assault
 
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             spriteSheet = Content.Load<Texture2D>(@"Textures\spriteSheet");
+            spaceSheet = Content.Load<Texture2D>(@"Textures\spaceSheet");
 
-            SpriteCreators.Load("SpaceSheet.txt");
+            SpriteCreators.Load(@"Content\SpaceSheet.txt");
 
             starField = new StarField(
                 this.Window.ClientBounds.Width,
                 this.Window.ClientBounds.Height,
-                200,
+                100,
                 new Vector2(0, 30f),
+                spriteSheet,
+                new Rectangle(0,450 , 2, 2));
+
+            starField2 = new StarField(
+                this.Window.ClientBounds.Width,
+                this.Window.ClientBounds.Height,
+                100,
+                new Vector2(0, 25f),
+                spriteSheet,
+                new Rectangle(0,450, 2, 2));
+
+            starField3 = new StarField(
+                this.Window.ClientBounds.Width,
+                this.Window.ClientBounds.Height,
+                100,
+                new Vector2(0, 35f),
                 spriteSheet,
                 new Rectangle(0, 450, 2, 2));
 
             planet = new Planets(
                 this.Window.ClientBounds.Width,
                 this.Window.ClientBounds.Height,
-                5,
-                new Vector2(0, 10f),
-                spriteSheet,
-                new Rectangle(0, 450, 50, 50));
+                1,
+                new Vector2(0, 20f),
+                spaceSheet);
 
             asteroidManager = new AsteroidManager(
                 10,
@@ -203,11 +221,14 @@ namespace Asteroid_Belt_Assault
                 case GameStates.Playing:
 
                     starField.Update(gameTime);
+                    starField2.Update(gameTime);
+                    starField3.Update(gameTime);
                     asteroidManager.Update(gameTime);
                     playerManager.Update(gameTime);
                     enemyManager.Update(gameTime);
                     explosionManager.Update(gameTime);
                     collisionManager.CheckCollisions();
+                    planet.Update(gameTime);
 
                     if (playerManager.Destroyed)
                     {
@@ -285,8 +306,10 @@ namespace Asteroid_Belt_Assault
                 (gameState == GameStates.PlayerDead) ||
                 (gameState == GameStates.GameOver))
             {
-                starField.Draw(spriteBatch);
                 planet.Draw(spriteBatch);
+                starField.Draw(spriteBatch);
+                starField2.Draw(spriteBatch);
+                starField3.Draw(spriteBatch);
                 asteroidManager.Draw(spriteBatch);
                 playerManager.Draw(spriteBatch);
                 enemyManager.Draw(spriteBatch);
