@@ -12,7 +12,7 @@ namespace Asteroid_Belt_Assault
         private List<Sprite> stars = new List<Sprite>();
         private int screenWidth = 800;
         private int screenHeight = 600;
-        private Random rand = new Random();
+        private Random rand;
         private Color[] colors = { Color.White, Color.Yellow, 
                            Color.Wheat, Color.WhiteSmoke, 
                            Color.SlateGray, Color.Blue,
@@ -26,6 +26,9 @@ namespace Asteroid_Belt_Assault
             Texture2D texture,
             Rectangle frameRectangle)
         {
+            System.Threading.Thread.Sleep(15);
+            rand = new Random(System.Environment.TickCount);
+
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             for (int x = 0; x < starCount; x++)
