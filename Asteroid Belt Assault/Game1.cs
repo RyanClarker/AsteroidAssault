@@ -252,6 +252,9 @@ namespace Asteroid_Belt_Assault
                         (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                     starField.Update(gameTime);
+                    starField2.Update(gameTime);
+                    starField3.Update(gameTime);
+                    planet.Update(gameTime);
                     asteroidManager.Update(gameTime);
                     enemyManager.Update(gameTime);
                     playerManager.PlayerShotManager.Update(gameTime);
