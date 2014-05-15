@@ -46,6 +46,11 @@ namespace Asteroid_Belt_Assault
         private Vector2 playerStartLocation = new Vector2(390, 550);
         private Vector2 scoreLocation = new Vector2(20, 10);
         private Vector2 livesLocation = new Vector2(20, 25);
+        protected Song song;
+        
+
+
+
 
 
         public Game1()
@@ -79,6 +84,10 @@ namespace Asteroid_Belt_Assault
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             spriteSheet = Content.Load<Texture2D>(@"Textures\spriteSheet");
             spaceSheet = Content.Load<Texture2D>(@"Textures\spaceSheet");
+
+
+            Song song = Content.Load<Song>(@"Sounds\brawl");  // Put the name of your song here instead of "song_title"
+            MediaPlayer.Play(song);
 
             SpriteCreators.Load(@"Content\SpaceSheet.txt");
 
